@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  min-height: calc(100vh - 176px);
+
+  @media (min-width: 600px) {
+    min-height: calc(100vh - 192px);
+  }
+}
+
+.content {
+  width: 275px;
+
+  @media (min-width: 600px) {
+    width: 80%;
+  }
+  @media (min-width: 1000px) {
+    width: 60%;
+  }
+}
