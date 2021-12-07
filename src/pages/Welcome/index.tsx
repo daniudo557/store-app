@@ -1,5 +1,11 @@
+import { Card } from "@mui/material";
+
 const Welcome = () => {
-  return <h1>Hello World</h1>;
+  return (
+    <Card sx={{ minWidth: 275 }}>
+      <h1>Hello World</h1>
+    </Card>
+  );
 };
 
 export default Welcome;
