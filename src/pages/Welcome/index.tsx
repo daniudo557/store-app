@@ -1,5 +1,6 @@
 import { Button, Card, Stack, TextField } from "@mui/material";
 import { ChangeEvent, useState } from "react";
+import "./Welcome.scss";
 
 const Welcome = () => {
   const [userName, setUserName] = useState<string>();
@@ -25,32 +26,34 @@ const Welcome = () => {
   };
 
   return (
-    <Card sx={{ padding: 4, width: "auto" }}>
-      <Stack sx={{ margin: 0 }}>
-        <TextField
-          value={userName ?? ""}
-          error={hasUserNameError}
-          helperText={
-            hasUserNameError && "User must have more than 3 characters"
-          }
-          placeholder="User"
-          sx={{ paddingBottom: 2 }}
-          onChange={handleChangeUserName}
-        />
-        <TextField
-          value={password ?? ""}
-          error={hasPasswordError}
-          helperText={
-            hasPasswordError && "Password must have more than 3 characters"
-          }
-          placeholder="Password"
-          sx={{ paddingBottom: 4 }}
-          onChange={handleChangePassword}
-        />
+    <div className="card-container">
+      <Card sx={{ padding: 4, width: "auto" }}>
+        <Stack sx={{ margin: 0 }}>
+          <TextField
+            value={userName ?? ""}
+            error={hasUserNameError}
+            helperText={
+              hasUserNameError && "User must have more than 3 characters"
+            }
+            placeholder="User"
+            sx={{ paddingBottom: 2 }}
+            onChange={handleChangeUserName}
+          />
+          <TextField
+            value={password ?? ""}
+            error={hasPasswordError}
+            helperText={
+              hasPasswordError && "Password must have more than 3 characters"
+            }
+            placeholder="Password"
+            sx={{ paddingBottom: 4 }}
+            onChange={handleChangePassword}
+          />
 
-        <Button variant="contained">Login</Button>
-      </Stack>
-    </Card>
+          <Button variant="contained">Login</Button>
+        </Stack>
+      </Card>
+    </div>
   );
 };
 

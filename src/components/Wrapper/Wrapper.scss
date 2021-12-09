@@ -12,11 +12,6 @@
 
 .content {
   width: 100%;
-
-  @media (min-width: 600px) {
-    width: 60%;
-  }
-  @media (min-width: 1000px) {
-    width: 50%;
-  }
+  text-align: -webkit-center;
+  text-align: -moz-center;
 }
