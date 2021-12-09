@@ -1,5 +1,6 @@
 import { Routes } from "src/configs/routes";
 import NotFound from "src/pages/NotFound";
+import Products from "src/pages/Products";
 import Welcome from "src/pages/Welcome";
 
 interface Route {
@@ -14,6 +15,11 @@ export const useRoute = () => {
       key: "welcome",
       url: Routes.ROOT,
       Component: Welcome,
+    },
+    {
+      key: "products",
+      url: Routes.PRODUCTS,
+      Component: Products,
     },
     {
       key: "notFound",
