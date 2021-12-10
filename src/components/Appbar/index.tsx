@@ -11,10 +11,10 @@ import {
   Typography,
   useScrollTrigger,
 } from "@mui/material";
-import { useTheme } from "@mui/system";
 import { useCallback, useMemo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Routes } from "src/configs/routes";
+import Sidebar from "../Sidebar";
 import "./Appbar.scss";
 
 interface HideOnScrollProps {
@@ -43,11 +43,11 @@ interface AppbarProps {
 
 const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
   const history = useHistory();
-  const theme = useTheme();
 
   const handleClick = () => history.push(Routes.ROOT);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const isUserLogged = useMemo(() => true, []);
 
@@ -68,25 +68,22 @@ const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
   }, [handleClose, history]);
 
   const handleChangeTheme = useCallback(() => {
-    console.log({ theme });
-
     setPrefersDarkMode((prevMode) => !prevMode);
-  }, [setPrefersDarkMode, theme]);
+  }, [setPrefersDarkMode]);
+
+  const handleToggleSidebar = useCallback(() => {
+    setSidebarOpen(!isSidebarOpen);
+  }, [isSidebarOpen]);
 
   return (
     <>
       <HideOnScroll>
         <AppbarMUI>
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
+            <IconButton onClick={handleToggleSidebar} color="inherit">
               <MenuIcon />
             </IconButton>
+            <Sidebar isOpen={isSidebarOpen} onClose={handleToggleSidebar} />
 
             <div
               style={{
@@ -119,7 +116,7 @@ const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
                 </IconButton>
 
                 {isUserLogged && (
-                  <div>
+                  <>
                     <IconButton
                       size="large"
                       aria-label="account of current user"
@@ -143,7 +140,7 @@ const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
                     >
                       <MenuItem onClick={handleLogout}>Logout</MenuItem>
                     </Menu>
-                  </div>
+                  </>
                 )}
               </div>
             </div>
