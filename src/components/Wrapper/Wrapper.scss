@@ -3,10 +3,10 @@
   flex-direction: column;
   align-items: center;
   padding: 32px 16px;
-  min-height: calc(100vh - 176px);
+  min-height: calc(100vh - 120px);
 
   @media (min-width: 600px) {
-    min-height: calc(100vh - 192px);
+    min-height: calc(100vh - 128px);
   }
 }
 
