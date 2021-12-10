@@ -1,6 +1,7 @@
 import { Routes } from "src/configs/routes";
 import NotFound from "src/pages/NotFound";
-import Products from "src/pages/Products";
+import Product from "src/pages/Product";
+import ProductDetail from "src/pages/ProductDetail";
 import Welcome from "src/pages/Welcome";
 
 interface Route {
@@ -18,8 +19,13 @@ export const useRoute = () => {
     },
     {
       key: "products",
-      url: Routes.PRODUCTS,
-      Component: Products,
+      url: Routes.PRODUCT,
+      Component: Product,
+    },
+    {
+      key: "productsDetail",
+      url: Routes.PRODUCT_DETAIL,
+      Component: ProductDetail,
     },
     {
       key: "notFound",
