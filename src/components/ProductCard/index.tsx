@@ -9,9 +9,12 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Routes } from "src/configs/routes";
 import { Product } from "src/domains/Product";
+import { decrement, increment } from "src/redux/cart";
+import { AppDispatch, RootState } from "src/redux/store";
 import CategoryTag from "../CategoryTag";
 import "./ProductCard.scss";
 
@@ -22,9 +25,11 @@ interface ProductCardProps {
 
 const ProductCard = (props: ProductCardProps) => {
   const { product, type = "small" } = props;
+  const { count } = useSelector((state: RootState) => state.counter);
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
-    <Badge badgeContent={3} color="warning">
+    <Badge badgeContent={count} color="warning">
       <Card className="card">
         <CardMedia
           component="img"
@@ -91,11 +96,24 @@ const ProductCard = (props: ProductCardProps) => {
         </CardContent>
 
         <CardActions>
-          <Button size="small" color="error">
+          <Button
+            size="small"
+            color="error"
+            onClick={() => {
+              dispatch(decrement());
+            }}
+          >
             Remove from cart
           </Button>
 
-          <Button size="small">Add to cart</Button>
+          <Button
+            size="small"
+            onClick={() => {
+              dispatch(increment());
+            }}
+          >
+            Add to cart
+          </Button>
         </CardActions>
       </Card>
     </Badge>
