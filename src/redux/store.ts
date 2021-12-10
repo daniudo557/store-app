@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./cart";
+import cartReducer from "./cart";
 
 export interface RootState {
-  counter: {
+  cart: {
+    id: number;
     count: number;
   };
 }
@@ -10,7 +11,7 @@ export type AppDispatch = typeof store.dispatch;
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    cart: cartReducer,
   },
 });
 

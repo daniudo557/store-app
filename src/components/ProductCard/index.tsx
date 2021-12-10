@@ -25,11 +25,13 @@ interface ProductCardProps {
 
 const ProductCard = (props: ProductCardProps) => {
   const { product, type = "small" } = props;
-  const { count } = useSelector((state: RootState) => state.counter);
+  const { cart } = useSelector((state: RootState) => state);
+
   const dispatch = useDispatch<AppDispatch>();
+  console.log({ cart });
 
   return (
-    <Badge badgeContent={count} color="warning">
+    <Badge badgeContent={id === product.id ? count : 0} color="warning">
       <Card className="card">
         <CardMedia
           component="img"
@@ -100,7 +102,7 @@ const ProductCard = (props: ProductCardProps) => {
             size="small"
             color="error"
             onClick={() => {
-              dispatch(decrement());
+              dispatch(decrement(id));
             }}
           >
             Remove from cart
@@ -109,7 +111,7 @@ const ProductCard = (props: ProductCardProps) => {
           <Button
             size="small"
             onClick={() => {
-              dispatch(increment());
+              dispatch(increment(id));
             }}
           >
             Add to cart
