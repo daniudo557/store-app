@@ -12,6 +12,6 @@
 
 .content {
   width: 100%;
-  text-align: -webkit-center;
-  text-align: -moz-center;
+  display: flex;
+  justify-content: center;
 }
