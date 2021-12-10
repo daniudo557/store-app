@@ -1,4 +1,5 @@
 import {
+  Badge,
   Button,
   Card,
   CardActions,
@@ -8,61 +9,94 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { Link } from "react-router-dom";
+import { Routes } from "src/configs/routes";
 import { Product } from "src/domains/Product";
 import CategoryTag from "../CategoryTag";
 import "./ProductCard.scss";
 
 interface ProductCardProps {
   product: Product;
+  type?: "small" | "large";
 }
 
 const ProductCard = (props: ProductCardProps) => {
-  const { product } = props;
+  const { product, type = "small" } = props;
 
   return (
-    <Card className="card">
-      <CardMedia
-        component="img"
-        alt="todo list"
-        height="200"
-        image={product.image}
-      />
-      <CardContent>
-        <Stack direction="row" justifyContent="space-between">
-          <Stack
-            direction="row"
-            alignItems="flex-end"
-            className="title-container"
-          >
-            <Typography variant="h5" component="div" className="title">
-              {product.title}
-            </Typography>
+    <Badge badgeContent={3} color="warning">
+      <Card className="card">
+        <CardMedia
+          component="img"
+          alt="todo list"
+          height="200"
+          image={product.image}
+        />
+        <CardContent>
+          <Stack direction="row" justifyContent="space-between">
+            <Stack
+              sx={{ marginBottom: 1 }}
+              direction="row"
+              alignItems="flex-end"
+              className={type === "small" ? "title-container" : undefined}
+            >
+              <Typography
+                variant="h5"
+                component="div"
+                className={type === "small" ? "title" : undefined}
+              >
+                {product.title}
+              </Typography>
+            </Stack>
           </Stack>
-        </Stack>
 
-        <CategoryTag category={product.category} />
+          <CategoryTag category={product.category} />
 
-        <Rating value={product.rating.rate} readOnly />
+          <Stack direction="row" sx={{ marginTop: 2 }}>
+            <Typography variant="body1" color="text.secondary">
+              Rating:
+            </Typography>
+            <Rating
+              value={product.rating.rate}
+              size="small"
+              style={{ marginTop: 1, marginLeft: 4 }}
+              readOnly
+            />
+          </Stack>
 
-        <Typography variant="h6" color="text.secondary" sx={{ marginTop: 3 }}>
-          $ {product.price}
-        </Typography>
-
-        <div className="-container">
-          <Typography
-            variant="h6"
-            color="text.secondary"
-            sx={{ marginTop: 3 }}
-            className="description"
-          >
-            {product.description}
+          <Typography variant="body1" color="text.secondary">
+            Price: $ {product.price}
           </Typography>
-        </div>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Add to cart</Button>
-      </CardActions>
-    </Card>
+
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            sx={{ marginTop: 2 }}
+            className={type === "small" ? "description" : undefined}
+          >
+            Description: {product.description}
+          </Typography>
+
+          <Button
+            component={Link}
+            to={`${Routes.PRODUCT}/${product.id}`}
+            color="primary"
+            sx={{ marginTop: 3 }}
+            variant="outlined"
+          >
+            See details
+          </Button>
+        </CardContent>
+
+        <CardActions>
+          <Button size="small" color="error">
+            Remove from cart
+          </Button>
+
+          <Button size="small">Add to cart</Button>
+        </CardActions>
+      </Card>
+    </Badge>
   );
 };
 

@@ -3,6 +3,7 @@ import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { Typography } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import ProductCard from "src/components/ProductCard";
+import ProductCardSkeleton from "src/components/ProductCard/ProductCardSkeleton";
 import Warning from "src/components/Warning";
 import { useProduct } from "src/hooks/useProduct";
 import "./ProductDetail.scss";
@@ -12,17 +13,20 @@ const ProductDetail = () => {
   const { product, isLoading } = useProduct();
 
   const handleClick = () => history.goBack();
+  console.log({ product, isLoading });
 
-  if (isLoading) return <h1>Loading...</h1>;
+  const Content = () => {
+    if (isLoading) return <ProductCardSkeleton />;
+
+    if (!product) {
+      return <Warning icon={<ErrorOutlineIcon />} message="No data found" />;
+    }
+
+    return <ProductCard product={product} type="large" />;
+  };
 
   return (
-    <div
-      style={{
-        maxWidth: 1024,
-        width: "100%",
-        alignSelf: "center",
-      }}
-    >
+    <div className="product-detail-container">
       <Typography
         variant="h5"
         component="a"
@@ -33,11 +37,8 @@ const ProductDetail = () => {
         <ArrowBackIosNewIcon sx={{ fontSize: 20 }} />
         Go back
       </Typography>
-      {product ? (
-        <ProductCard product={product} type="large" />
-      ) : (
-        <Warning icon={<ErrorOutlineIcon />} message="No data found" />
-      )}
+
+      <Content />
     </div>
   );
 };

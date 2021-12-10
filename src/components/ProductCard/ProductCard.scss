@@ -1,5 +1,11 @@
 .card {
   width: 100%;
+
+  &-link {
+    width: 100%;
+    display: inline-block !important;
+    text-transform: none !important;
+  }
 }
 
 .title {
@@ -8,6 +14,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-align: start;
+
   &-container {
     height: 64px;
   }
@@ -18,7 +25,4 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  &-container {
-    height: 96px;
-  }
 }
