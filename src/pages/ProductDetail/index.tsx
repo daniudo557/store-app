@@ -33,6 +33,7 @@ const ProductDetail = () => {
         onClick={handleClick}
         className="back-link"
         sx={{ flexGrow: 1 }}
+        color="text.primary"
       >
         <ArrowBackIosNewIcon sx={{ fontSize: 20 }} />
         Go back
