@@ -11,7 +11,7 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import ListItemText from "@mui/material/ListItemText";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { Routes } from "src/configs/routes";
 
 interface SidebarProps {
@@ -21,6 +21,8 @@ interface SidebarProps {
 
 const Sidebar = (props: SidebarProps) => {
   const { pathname } = useLocation();
+  const history = useHistory();
+
   const { isOpen, onClose } = props;
 
   const drawer = (
@@ -39,21 +41,33 @@ const Sidebar = (props: SidebarProps) => {
       </div>
       <Divider />
       <List>
-        <ListItem button selected={pathname === Routes.PRODUCT}>
+        <ListItem
+          button
+          selected={pathname === Routes.PRODUCT}
+          onClick={() => history.push(Routes.PRODUCT)}
+        >
           <ListItemIcon>
             <FormatListBulletedIcon />
           </ListItemIcon>
           <ListItemText primary="Products list" />
         </ListItem>
 
-        <ListItem button selected={pathname === Routes.CART}>
+        <ListItem
+          button
+          selected={pathname === Routes.CART}
+          onClick={() => history.push(Routes.CART)}
+        >
           <ListItemIcon>
             <ShoppingCartIcon />
           </ListItemIcon>
           <ListItemText primary="See cart" />
         </ListItem>
 
-        <ListItem button selected={pathname === Routes.CREATE_PRODUCT}>
+        <ListItem
+          button
+          selected={pathname === Routes.CREATE_PRODUCT}
+          onClick={() => history.push(Routes.CREATE_PRODUCT)}
+        >
           <ListItemIcon>
             <AddIcon />
           </ListItemIcon>
