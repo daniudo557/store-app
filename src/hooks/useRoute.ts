@@ -1,4 +1,6 @@
 import { Routes } from "src/configs/routes";
+import Cart from "src/pages/Cart";
+import CreateProduct from "src/pages/CreateProduct";
 import NotFound from "src/pages/NotFound";
 import Product from "src/pages/Product";
 import ProductDetail from "src/pages/ProductDetail";
@@ -26,6 +28,16 @@ export const useRoute = () => {
       key: "productsDetail",
       url: Routes.PRODUCT_DETAIL,
       Component: ProductDetail,
+    },
+    {
+      key: "cart",
+      url: Routes.CART,
+      Component: Cart,
+    },
+    {
+      key: "createProduct",
+      url: Routes.CREATE_PRODUCT,
+      Component: CreateProduct,
     },
     {
       key: "notFound",
