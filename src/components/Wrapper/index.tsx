@@ -1,3 +1,4 @@
+import { Container } from "@mui/material";
 import React from "react";
 import "./Wrapper.scss";
 
@@ -7,9 +8,9 @@ interface WrapperProps {
 
 const Wrapper = ({ children }: WrapperProps) => {
   return (
-    <div className="container">
+    <Container className="container" sx={{ bgcolor: "background.default" }}>
       <div className="content">{children}</div>
-    </div>
+    </Container>
   );
 };
 

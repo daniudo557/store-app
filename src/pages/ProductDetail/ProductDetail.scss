@@ -1,0 +1,11 @@
+.product-detail-container {
+  max-width: 1024px;
+  width: 100%;
+  align-self: center;
+}
+
+.back-link {
+  &:hover {
+    cursor: pointer;
+  }
+}

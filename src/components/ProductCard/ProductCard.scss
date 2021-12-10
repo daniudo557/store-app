@@ -1,0 +1,28 @@
+.card {
+  width: 100%;
+
+  &-link {
+    width: 100%;
+    display: inline-block !important;
+    text-transform: none !important;
+  }
+}
+
+.title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: start;
+
+  &-container {
+    height: 64px;
+  }
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
