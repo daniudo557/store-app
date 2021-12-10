@@ -2,6 +2,7 @@ import {  useQuery } from "react-query";
 import { useParams } from "react-router";
 import {
   fetchProduct as fetchProductService,
+  findProduct as findProductService,
 } from "src/services/productService";
 
 export const useProduct = () => {
@@ -16,13 +17,13 @@ export const useProduct = () => {
     }
   );
 
-  // const { data: product, isLoading: isLoadingProduct } = useQuery(
-  //   "product",
-  //   () => findProductService(params.id as string),
-  //   {
-  //     enabled: !!params.id,
-  //   }
-  // );
+  const { data: product, isLoading: isLoadingProduct } = useQuery(
+    "product",
+    () => findProductService(params.id as string),
+    {
+      enabled: !!params.id,
+    }
+  );
 
   // const { mutate: createProduct } = useMutation(createProductService, {
   //   onSuccess: () => {
@@ -53,8 +54,10 @@ export const useProduct = () => {
   //   removeProduct,
   //   updateProduct,
   // };
+
   return {
-    isLoading: isLoadingProductList,
+    product,
+    isLoading: isLoadingProduct || isLoadingProductList,
     productList,
   };
 };

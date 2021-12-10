@@ -8,13 +8,13 @@ export const fetchProduct = (): Promise<Product[]> => {
   });
 };
 
-// export const findProduct = (productId: string): Promise<Product> => {
-//   const url = Endpoints.FIND_PRODUCT.replace("{id}", productId);
+export const findProduct = (productId: string): Promise<Product> => {
+  const url = Endpoints.FIND_PRODUCT.replace("{id}", productId);
 
-//   return RequestService.get<Product>(url).then((respnse) => {
-//     return respnse.data;
-//   });
-// };
+  return RequestService.get<Product>(url).then((respnse) => {
+    return respnse.data;
+  });
+};
 
 // export const createProduct = (product: Partial<Product>): Promise<Product> => {
 //   return RequestService.post<Product>(Endpoints.CREATE_PRODUCT, product).then(
