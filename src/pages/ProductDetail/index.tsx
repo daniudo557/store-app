@@ -13,7 +13,6 @@ const ProductDetail = () => {
   const { product, isLoading } = useProduct();
 
   const handleClick = () => history.goBack();
-  console.log({ product, isLoading });
 
   const Content = () => {
     if (isLoading) return <ProductCardSkeleton />;

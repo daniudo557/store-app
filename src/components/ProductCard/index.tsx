@@ -77,15 +77,17 @@ const ProductCard = (props: ProductCardProps) => {
             Description: {product.description}
           </Typography>
 
-          <Button
-            component={Link}
-            to={`${Routes.PRODUCT}/${product.id}`}
-            color="primary"
-            sx={{ marginTop: 3 }}
-            variant="outlined"
-          >
-            See details
-          </Button>
+          {type === "small" && (
+            <Button
+              component={Link}
+              to={`${Routes.PRODUCT}/${product.id}`}
+              color="primary"
+              sx={{ marginTop: 3 }}
+              variant="outlined"
+            >
+              See details
+            </Button>
+          )}
         </CardContent>
 
         <CardActions>
