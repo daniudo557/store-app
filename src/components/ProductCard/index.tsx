@@ -27,12 +27,14 @@ const ProductCard = (props: ProductCardProps) => {
   const { product, type = "small" } = props;
   const { cart } = useSelector((state: RootState) => state);
 
+  const prodInCart = (cart as any).cart.find((p: any) => p.id === product.id);
+
   const dispatch = useDispatch<AppDispatch>();
 
   return (
     <Badge
       sx={{ width: "100%" }}
-      badgeContent={id === product.id ? count : 0}
+      badgeContent={prodInCart?.count ?? 0}
       color="warning"
     >
       <Card className="card">
@@ -107,7 +109,7 @@ const ProductCard = (props: ProductCardProps) => {
             size="small"
             color="error"
             onClick={() => {
-              dispatch(decrement(id));
+              dispatch(decrement(product.id));
             }}
           >
             Remove from cart
@@ -116,7 +118,7 @@ const ProductCard = (props: ProductCardProps) => {
           <Button
             size="small"
             onClick={() => {
-              dispatch(increment(id));
+              dispatch(increment(product.id));
             }}
           >
             Add to cart

@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const getProductOnList = (productList: { id: number }[], id: number) =>
-  productList.find((product) => product.id === id);
+export const getProductOnList = (
+  productList: { id: number; count: number }[],
+  id: number
+) => productList.find((product) => product.id === id);
 
 const cartSlice = createSlice({
   name: "cart",
@@ -31,20 +33,13 @@ const cartSlice = createSlice({
           ? { ...product, count: product.count + 1 }
           : product
       );
-
-      // const oldState: any = state.find(
-      //   (product: any) => product.id === action.payload
-      // );
-
-      // const newState = { count: oldState.count + 1, id: action.payload };
-
-      // const oldArray = [...state];
-
-      // state = [...oldArray, newState];
     },
-    decrement: (state, id) => {
-      // if (state.count <= 0) return;
-      // state.count -= 1;
+    decrement: (state: any, action) => {
+      state.cart = state.cart.map((product: any) => {
+        return product.id === action.payload
+          ? { ...product, count: product.count <= 0 ? 0 : product.count - 1 }
+          : product;
+      });
     },
   },
 });
