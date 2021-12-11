@@ -1,5 +1,6 @@
 .card {
   width: 100%;
+  height: 596px;
 
   &-link {
     width: 100%;
@@ -25,4 +26,8 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+
+  &-container {
+    height: 72px;
+  }
 }

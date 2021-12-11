@@ -28,14 +28,17 @@ const ProductCard = (props: ProductCardProps) => {
   const { cart } = useSelector((state: RootState) => state);
 
   const dispatch = useDispatch<AppDispatch>();
-  console.log({ cart });
 
   return (
-    <Badge badgeContent={id === product.id ? count : 0} color="warning">
+    <Badge
+      sx={{ width: "100%" }}
+      badgeContent={id === product.id ? count : 0}
+      color="warning"
+    >
       <Card className="card">
         <CardMedia
           component="img"
-          alt="todo list"
+          alt="product image"
           height="200"
           image={product.image}
         />
@@ -64,7 +67,7 @@ const ProductCard = (props: ProductCardProps) => {
               Rating:
             </Typography>
             <Rating
-              value={product.rating.rate}
+              value={product.rating}
               size="small"
               style={{ marginTop: 1, marginLeft: 4 }}
               readOnly
@@ -75,14 +78,16 @@ const ProductCard = (props: ProductCardProps) => {
             Price: $ {product.price}
           </Typography>
 
-          <Typography
-            variant="body1"
-            color="text.secondary"
-            sx={{ marginTop: 2 }}
-            className={type === "small" ? "description" : undefined}
-          >
-            Description: {product.description}
-          </Typography>
+          <div className="description-container">
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ marginTop: 2 }}
+              className={type === "small" ? "description" : undefined}
+            >
+              Description: {product.description}
+            </Typography>
+          </div>
 
           {type === "small" && (
             <Button
