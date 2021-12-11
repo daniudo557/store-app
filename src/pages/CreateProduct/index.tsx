@@ -32,7 +32,7 @@ const CreateProduct = () => {
     setTitle("");
     setDescription("");
     setCategory("");
-    setPrice(undefined);
+    setPrice(0);
     setRating(0);
   };
 
