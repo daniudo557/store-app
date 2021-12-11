@@ -8,30 +8,31 @@ import {
   Rating,
   Stack,
   Typography,
-} from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { Routes } from "src/configs/routes";
-import { Product } from "src/domains/Product";
-import { decrement, increment } from "src/redux/cart";
-import { AppDispatch, RootState } from "src/redux/store";
-import CategoryTag from "../CategoryTag";
-import "./ProductCard.scss";
+} from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Routes } from 'src/configs/routes';
+import { Product } from 'src/domains/Product';
+import { decrement, increment } from 'src/redux/cart';
+import { AppDispatch, RootState } from 'src/redux/store';
+import CategoryTag from '../CategoryTag';
+import './ProductCard.scss';
 
 interface ProductCardProps {
   product: Product;
-  type?: "small" | "large";
+  type?: 'small' | 'large';
 }
 
 const ProductCard = (props: ProductCardProps) => {
-  const { product, type = "small" } = props;
+  const { product, type = 'small' } = props;
   const { cart } = useSelector((state: RootState) => state);
 
+  const prodInCart = (cart as any).cart.find((p: any) => p.id === product.id);
+
   const dispatch = useDispatch<AppDispatch>();
-  console.log({ cart });
 
   return (
-    <Badge badgeContent={id === product.id ? count : 0} color="warning">
+    <Badge badgeContent={prodInCart?.count ?? 0} color="warning">
       <Card className="card">
         <CardMedia
           component="img"
@@ -45,12 +46,12 @@ const ProductCard = (props: ProductCardProps) => {
               sx={{ marginBottom: 1 }}
               direction="row"
               alignItems="flex-end"
-              className={type === "small" ? "title-container" : undefined}
+              className={type === 'small' ? 'title-container' : undefined}
             >
               <Typography
                 variant="h5"
                 component="div"
-                className={type === "small" ? "title" : undefined}
+                className={type === 'small' ? 'title' : undefined}
               >
                 {product.title}
               </Typography>
@@ -79,12 +80,12 @@ const ProductCard = (props: ProductCardProps) => {
             variant="body1"
             color="text.secondary"
             sx={{ marginTop: 2 }}
-            className={type === "small" ? "description" : undefined}
+            className={type === 'small' ? 'description' : undefined}
           >
             Description: {product.description}
           </Typography>
 
-          {type === "small" && (
+          {type === 'small' && (
             <Button
               component={Link}
               to={`${Routes.PRODUCT}/${product.id}`}
@@ -102,7 +103,7 @@ const ProductCard = (props: ProductCardProps) => {
             size="small"
             color="error"
             onClick={() => {
-              dispatch(decrement(id));
+              dispatch(decrement(product.id));
             }}
           >
             Remove from cart
@@ -111,7 +112,7 @@ const ProductCard = (props: ProductCardProps) => {
           <Button
             size="small"
             onClick={() => {
-              dispatch(increment(id));
+              dispatch(increment(product.id));
             }}
           >
             Add to cart
