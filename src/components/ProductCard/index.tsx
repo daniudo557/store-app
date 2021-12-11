@@ -57,7 +57,7 @@ const ProductCard = (props: ProductCardProps) => {
               Rating:
             </Typography>
             <Rating
-              value={product.rating.rate}
+              value={product.rating}
               size="small"
               style={{ marginTop: 1, marginLeft: 4 }}
               readOnly

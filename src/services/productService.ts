@@ -16,11 +16,11 @@ export const findProduct = (productId: string): Promise<Product> => {
   });
 };
 
-// export const createProduct = (product: Partial<Product>): Promise<Product> => {
-//   return RequestService.post<Product>(Endpoints.CREATE_PRODUCT, product).then(
-//     (respnse) => respnse.data
-//   );
-// };
+export const createProduct = (product: Partial<Product>): Promise<Product> => {
+  return RequestService.post<Product>(Endpoints.CREATE_PRODUCT, product).then(
+    (respnse) => respnse.data
+  );
+};
 
 // export const updateProduct = (product: Product): Promise<Product> => {
 //   const productId = product.id.toString();

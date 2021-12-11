@@ -1,13 +1,8 @@
-export interface Rating {
-  rate: number;
-  count: number;
-}
-
 export enum Category {
   MEN_CLOTHING = "men's clothing",
   JEWELERY = "jewelery",
   ELECTRONICS = "electronics",
-  WOMEN_CLOTHING = "women's clothing"
+  WOMEN_CLOTHING = "women's clothing",
 }
 
 export interface Product {
@@ -17,5 +12,5 @@ export interface Product {
   description: string;
   category: Category;
   image: string;
-  rating: Rating;
+  rating: number;
 }
