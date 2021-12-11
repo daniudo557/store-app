@@ -24,11 +24,11 @@ const ProductCard = (props: ProductCardProps) => {
   const { product, type = "small" } = props;
 
   return (
-    <Badge badgeContent={3} color="warning">
+    <Badge badgeContent={3} color="warning" sx={{ width: "100%" }}>
       <Card className="card">
         <CardMedia
           component="img"
-          alt="todo list"
+          alt="product image"
           height="200"
           image={product.image}
         />
@@ -68,14 +68,16 @@ const ProductCard = (props: ProductCardProps) => {
             Price: $ {product.price}
           </Typography>
 
-          <Typography
-            variant="body1"
-            color="text.secondary"
-            sx={{ marginTop: 2 }}
-            className={type === "small" ? "description" : undefined}
-          >
-            Description: {product.description}
-          </Typography>
+          <div className="description-container">
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ marginTop: 2 }}
+              className={type === "small" ? "description" : undefined}
+            >
+              Description: {product.description}
+            </Typography>
+          </div>
 
           {type === "small" && (
             <Button
