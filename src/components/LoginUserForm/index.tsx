@@ -44,7 +44,7 @@ const LoginUserForm = (props: LoginFormProps) => {
         error={hasUserNameError}
         label="Username"
         helperText={hasUserNameError && "User must have more than 3 characters"}
-        placeholder="User"
+        placeholder="Username"
         sx={{ paddingBottom: 2 }}
         onChange={handleChangeUserName}
       />

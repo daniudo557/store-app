@@ -38,11 +38,6 @@ const Welcome = () => {
   const [hasRegisterPasswordError, setHasRegisterPasswordError] =
     useState<boolean>(false);
 
-  console.log({ registerName });
-  console.log({ registerEmail });
-  console.log({ registerUsername });
-  console.log({ registerPassword });
-
   const handleChangeUserName = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const newUserName = event.target.value;
@@ -133,7 +128,7 @@ const Welcome = () => {
       event.preventDefault();
       history.push(Routes.ROOT);
     },
-    [history]
+    [registerName, registerEmail, registerUsername, registerPassword, history]
   );
 
   return (
