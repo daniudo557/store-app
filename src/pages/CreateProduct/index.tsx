@@ -1,25 +1,26 @@
-import { useState } from "react";
 import {
-  TextField,
-  Select,
-  Typography,
-  InputAdornment,
-  FormControl,
-  InputLabel,
-  OutlinedInput,
-  MenuItem,
-  Rating,
   Button,
+  FormControl,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Rating,
+  Select,
+  TextField,
+  Typography,
 } from "@mui/material";
-
+import { useState } from "react";
+import { Category, Product } from "src/domains/Product";
+import { useProduct } from "src/hooks/useProduct";
 import "./CreateProduct.scss";
-import { Category } from "src/domains/Product";
 
 const CreateProduct = () => {
+  const { createProduct } = useProduct();
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [category, setCategory] = useState<string>("");
-  const [price, setPrice] = useState<number>(0);
+  const [price, setPrice] = useState<number>();
   const [rating, setRating] = useState<number>(0);
 
   const productDataFilled =
@@ -27,16 +28,26 @@ const CreateProduct = () => {
 
   const categories = Object.values(Category);
 
+  const cleanFields = () => {
+    setTitle("");
+    setDescription("");
+    setCategory("");
+    setPrice(undefined);
+    setRating(0);
+  };
+
   const handleRegister = () => {
-    const productData = {
+    const productData: Partial<Product> = {
       title: title,
       description: description,
-      category: category,
+      category: category as Category,
       price: price,
       rating: rating,
     };
 
-    console.log("productData: ", productData);
+    createProduct(productData);
+
+    cleanFields();
   };
 
   return (
