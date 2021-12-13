@@ -1,16 +1,12 @@
 import { Card, Stack, Tab, Tabs } from "@mui/material";
 import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react";
-import { useHistory } from "react-router-dom";
-
 import LoginUserForm from "src/components/LoginUserForm";
 import RegisterUserForm from "src/components/RegisterUserForm";
-
-import { Routes } from "src/configs/routes";
-
+import { useAuth } from "src/hooks/useAuth";
 import "./Welcome.scss";
 
 const Welcome = () => {
-  const history = useHistory();
+  const { authenticateUser, registerUser } = useAuth();
 
   const [tab, setTab] = useState<number>(0);
 
@@ -63,9 +59,10 @@ const Welcome = () => {
   const handleSubmit = useCallback(
     (event: SyntheticEvent) => {
       event.preventDefault();
-      history.push(Routes.PRODUCT);
+
+      authenticateUser({ userName, password });
     },
-    [history]
+    [authenticateUser, password, userName]
   );
 
   const handleChangeRegisterName = useCallback(
@@ -120,15 +117,21 @@ const Welcome = () => {
       const newUser = {
         name: registerName,
         email: registerEmail,
-        username: registerUsername,
+        userName: registerUsername,
         password: registerPassword,
       };
 
-      console.log({ newUser });
       event.preventDefault();
-      history.push(Routes.ROOT);
+
+      registerUser(newUser);
     },
-    [registerName, registerEmail, registerUsername, registerPassword, history]
+    [
+      registerName,
+      registerEmail,
+      registerUsername,
+      registerPassword,
+      registerUser,
+    ]
   );
 
   return (
