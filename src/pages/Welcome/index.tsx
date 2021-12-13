@@ -1,11 +1,10 @@
 import { Button, Card, Stack, TextField } from "@mui/material";
 import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Routes } from "src/configs/routes";
+import { useAuth } from "src/hooks/useAuth";
 import "./Welcome.scss";
 
 const Welcome = () => {
-  const history = useHistory();
+  const { authenticateUser } = useAuth();
 
   const [userName, setUserName] = useState<string>();
   const [hasUserNameError, setHasUserNameError] = useState<boolean>();
@@ -41,9 +40,9 @@ const Welcome = () => {
 
       console.log("Login!!");
 
-      history.push(Routes.PRODUCT);
+      authenticateUser({ userName, password });
     },
-    [history]
+    [authenticateUser, password, userName]
   );
 
   return (
