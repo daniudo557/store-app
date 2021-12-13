@@ -12,6 +12,7 @@ import {
   useScrollTrigger,
 } from "@mui/material";
 import { useCallback, useMemo, useState } from "react";
+import { useQueryClient } from "react-query";
 import { useHistory } from "react-router-dom";
 import { Routes } from "src/configs/routes";
 import Sidebar from "../Sidebar";
@@ -43,6 +44,7 @@ interface AppbarProps {
 
 const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
   const history = useHistory();
+  const queryClient = useQueryClient();
 
   const handleClick = () => history.push(Routes.ROOT);
 
@@ -62,10 +64,13 @@ const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
   const handleLogout = useCallback(() => {
     console.log("Logout!!");
 
+    localStorage.removeItem("token");
+    queryClient.removeQueries();
+
     handleClose();
 
     history.push(Routes.ROOT);
-  }, [handleClose, history]);
+  }, [handleClose, history, queryClient]);
 
   const handleChangeTheme = useCallback(() => {
     setPrefersDarkMode((prevMode) => !prevMode);
