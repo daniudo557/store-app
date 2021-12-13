@@ -1,9 +1,9 @@
-import { Card, Stack, Tab, Tabs } from "@mui/material";
-import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react";
-import LoginUserForm from "src/components/LoginUserForm";
-import RegisterUserForm from "src/components/RegisterUserForm";
-import { useAuth } from "src/hooks/useAuth";
-import "./Welcome.scss";
+import { Card, Stack, Tab, Tabs } from '@mui/material';
+import { ChangeEvent, SyntheticEvent, useCallback, useState } from 'react';
+import LoginUserForm from 'src/components/LoginUserForm';
+import RegisterUserForm from 'src/components/RegisterUserForm';
+import { useAuth } from 'src/hooks/useAuth';
+import './Welcome.scss';
 
 const Welcome = () => {
   const { authenticateUser, registerUser } = useAuth();
@@ -11,26 +11,26 @@ const Welcome = () => {
   const [tab, setTab] = useState<number>(0);
 
   // === Login ===
-  const [userName, setUserName] = useState<string>("");
+  const [userName, setUserName] = useState<string>('');
   const [hasUserNameError, setHasUserNameError] = useState<boolean>(false);
 
-  const [password, setPassword] = useState<string>("");
+  const [password, setPassword] = useState<string>('');
   const [hasPasswordError, setHasPasswordError] = useState<boolean>(false);
 
   // === Register ===
-  const [registerName, setRegisterName] = useState<string>("");
+  const [registerName, setRegisterName] = useState<string>('');
   const [hasRegisterNameError, setHasRegisterNameError] =
     useState<boolean>(false);
 
-  const [registerEmail, setRegisterEmail] = useState<string>("");
+  const [registerEmail, setRegisterEmail] = useState<string>('');
   const [hasRegisterEmailError, setHasRegisterEmailError] =
     useState<boolean>(false);
 
-  const [registerUsername, setRegisterUsername] = useState<string>("");
+  const [registerUsername, setRegisterUsername] = useState<string>('');
   const [hasRegisterUsernameError, setHasRegisterUsernameError] =
     useState<boolean>(false);
 
-  const [registerPassword, setRegisterPassword] = useState<string>("");
+  const [registerPassword, setRegisterPassword] = useState<string>('');
   const [hasRegisterPasswordError, setHasRegisterPasswordError] =
     useState<boolean>(false);
 
@@ -136,14 +136,14 @@ const Welcome = () => {
 
   return (
     <div className="card-container">
-      <Card sx={{ padding: 4, width: "auto" }}>
-        <div style={{ display: "flex", justifyContent: "center" }}>
+      <Card sx={{ padding: 4, width: 'auto' }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Tabs
             value={tab}
             onChange={(event: React.SyntheticEvent, newValue: number) =>
               setTab(newValue)
             }
-            style={{ marginBottom: "10px" }}
+            style={{ marginBottom: '10px' }}
           >
             <Tab label="Login" />
             <Tab label="Register" />

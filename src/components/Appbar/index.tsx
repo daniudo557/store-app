@@ -1,6 +1,13 @@
-import { AccountCircle, Menu as MenuIcon } from "@mui/icons-material";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
+import './Appbar.scss';
+
+import { useCallback, useMemo, useState } from 'react';
+import { useQueryClient } from 'react-query';
+import { useHistory } from 'react-router-dom';
+import { Routes } from 'src/configs/routes';
+
+import { AccountCircle, Menu as MenuIcon } from '@mui/icons-material';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 import {
   AppBar as AppbarMUI,
   IconButton,
@@ -10,13 +17,9 @@ import {
   Toolbar,
   Typography,
   useScrollTrigger,
-} from "@mui/material";
-import { useCallback, useMemo, useState } from "react";
-import { useQueryClient } from "react-query";
-import { useHistory } from "react-router-dom";
-import { Routes } from "src/configs/routes";
-import Sidebar from "../Sidebar";
-import "./Appbar.scss";
+} from '@mui/material';
+
+import Sidebar from '../Sidebar';
 
 interface HideOnScrollProps {
   window?: () => Window;
@@ -62,9 +65,9 @@ const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
   }, []);
 
   const handleLogout = useCallback(() => {
-    console.log("Logout!!");
+    console.log('Logout!!');
 
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     queryClient.removeQueries();
 
     handleClose();
@@ -92,10 +95,10 @@ const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
 
             <div
               style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-between",
-                textAlign: "center",
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-between',
+                textAlign: 'center',
               }}
             >
               <Typography
@@ -103,12 +106,12 @@ const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
                 variant="h6"
                 component="a"
                 className="header-link"
-                sx={{ alignSelf: "center" }}
+                sx={{ alignSelf: 'center' }}
               >
                 Store App
               </Typography>
 
-              <div style={{ display: "flex" }}>
+              <div style={{ display: 'flex' }}>
                 <IconButton
                   size="large"
                   aria-label="account of current user"
@@ -136,8 +139,8 @@ const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
                       id="menu-appbar"
                       anchorEl={anchorEl}
                       anchorOrigin={{
-                        vertical: "bottom",
-                        horizontal: "right",
+                        vertical: 'bottom',
+                        horizontal: 'right',
                       }}
                       keepMounted
                       open={Boolean(anchorEl)}
