@@ -1,10 +1,12 @@
-import { Collapse } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { TransitionGroup } from 'react-transition-group';
-import CartCard from 'src/components/CartCard';
-import { useProduct } from 'src/hooks/useProduct';
-import { RootState } from 'src/redux/store';
-import './Cart.scss';
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import { Collapse } from "@mui/material";
+import { useSelector } from "react-redux";
+import { TransitionGroup } from "react-transition-group";
+import CartCard from "src/components/CartCard";
+import Warning from "src/components/Warning";
+import { useProduct } from "src/hooks/useProduct";
+import { RootState } from "src/redux/store";
+import "./Cart.scss";
 
 const Cart = () => {
   const { productList, isLoading } = useProduct();
@@ -15,10 +17,14 @@ const Cart = () => {
     productsOnCart.includes(product.id)
   );
 
-  if (isLoading) return <h1>Loading...</h1>;
+  const Content = () => {
+    if (isLoading) return <h1>Loading...</h1>;
 
-  return (
-    <div className="cart-container">
+    if (!cartList?.length) {
+      return <Warning icon={<ErrorOutlineIcon />} message="No data on cart" />;
+    }
+
+    return (
       <TransitionGroup>
         {cartList?.map((product) => (
           <Collapse key={product.id}>
@@ -26,6 +32,12 @@ const Cart = () => {
           </Collapse>
         ))}
       </TransitionGroup>
+    );
+  };
+
+  return (
+    <div className="cart-container">
+      <Content />
     </div>
   );
 };
