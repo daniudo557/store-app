@@ -18,7 +18,7 @@ const Cart = () => {
   );
 
   const Content = () => {
-    if (isLoading) return <h1>Loading...</h1>;
+    if (isLoading) return <CartCard.Skeleton />;
 
     if (!cartList?.length) {
       return <Warning icon={<ErrorOutlineIcon />} message="No data on cart" />;

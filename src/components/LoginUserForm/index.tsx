@@ -49,7 +49,7 @@ const LoginUserForm = () => {
 
       authenticateUser({ userName, password });
     },
-    [authenticateUser, password, userName]
+    [password, userName]
   );
 
   return (
