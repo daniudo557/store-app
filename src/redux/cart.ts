@@ -1,4 +1,4 @@
-import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
+import { createSlice, SliceCaseReducers } from "@reduxjs/toolkit";
 
 export const getProductOnList = (productList: CartProduct[], id: number) =>
   productList.find((product) => product.id === id);
@@ -9,7 +9,7 @@ export interface CartProduct {
 }
 
 const cartSlice = createSlice<CartProduct[], SliceCaseReducers<CartProduct[]>>({
-  name: 'cart',
+  name: "cart",
   initialState: [],
   reducers: {
     increment: (state, action) => {
@@ -35,9 +35,8 @@ const cartSlice = createSlice<CartProduct[], SliceCaseReducers<CartProduct[]>>({
       const cartProduct = getProductOnList(state, action.payload);
       const isProductOnList = !!cartProduct;
 
-      if (!isProductOnList) {
-        return;
-      }
+      if (!isProductOnList) return;
+
       if (cartProduct.count === 1) {
         const filteredList = state.filter(
           (comic) => comic.id !== action.payload

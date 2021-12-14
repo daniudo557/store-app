@@ -11,8 +11,12 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import ListItemText from "@mui/material/ListItemText";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { Routes } from "src/configs/routes";
+import { User } from "src/domains/User";
+import { RootState } from "src/redux/store";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -22,8 +26,12 @@ interface SidebarProps {
 const Sidebar = (props: SidebarProps) => {
   const { pathname } = useLocation();
   const history = useHistory();
-
+  const { user } = useSelector<RootState, { user?: User }>(
+    (state) => state?.user
+  );
   const { isOpen, onClose } = props;
+
+  const isSuperUser = useMemo(() => user?.role === 1, [user]);
 
   const drawer = (
     <div>
@@ -63,16 +71,18 @@ const Sidebar = (props: SidebarProps) => {
           <ListItemText primary="See cart" />
         </ListItem>
 
-        <ListItem
-          button
-          selected={pathname === Routes.CREATE_PRODUCT}
-          onClick={() => history.push(Routes.CREATE_PRODUCT)}
-        >
-          <ListItemIcon>
-            <AddIcon />
-          </ListItemIcon>
-          <ListItemText primary="Create product" />
-        </ListItem>
+        {isSuperUser && (
+          <ListItem
+            button
+            selected={pathname === Routes.CREATE_PRODUCT}
+            onClick={() => history.push(Routes.CREATE_PRODUCT)}
+          >
+            <ListItemIcon>
+              <AddIcon />
+            </ListItemIcon>
+            <ListItemText primary="Create product" />
+          </ListItem>
+        )}
       </List>
     </div>
   );
