@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@emotion/react";
-import { createTheme } from "@mui/material";
+import { createTheme, CssBaseline } from "@mui/material";
 import { useMemo, useState } from "react";
 import Appbar from "./components/Appbar";
 import Footer from "./components/Footer";
@@ -22,10 +22,8 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Appbar
-        prefersDarkMode={prefersDarkMode}
-        setPrefersDarkMode={setPrefersDarkMode}
-      />
+      <CssBaseline />
+      <Appbar setPrefersDarkMode={setPrefersDarkMode} />
       <Wrapper>
         <Router />
       </Wrapper>

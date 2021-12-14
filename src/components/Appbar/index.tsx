@@ -10,6 +10,7 @@ import {
   Toolbar,
   Typography,
   useScrollTrigger,
+  useTheme,
 } from "@mui/material";
 import { useCallback, useMemo, useState } from "react";
 import { useQueryClient } from "react-query";
@@ -42,11 +43,11 @@ function HideOnScroll(props: HideOnScrollProps) {
 }
 
 interface AppbarProps {
-  prefersDarkMode: boolean;
   setPrefersDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
+const Appbar = ({ setPrefersDarkMode }: AppbarProps) => {
+  const theme = useTheme();
   const { user } = useSelector<RootState, { user?: User }>(
     (state) => state?.user
   );
@@ -61,6 +62,7 @@ const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const isUserLogged = useMemo(() => !!user, [user]);
+  const prefersDarkMode = useMemo(() => theme.palette.mode === "dark", [theme]);
 
   const handleMenu = useCallback((event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
