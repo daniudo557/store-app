@@ -2,10 +2,10 @@ import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { Collapse } from "@mui/material";
 import { useSelector } from "react-redux";
 import { TransitionGroup } from "react-transition-group";
-import CartCard from "src/components/CartCard";
-import Warning from "src/components/Warning";
-import { useProduct } from "src/hooks/useProduct";
-import { RootState } from "src/redux/store";
+import CartCard from "components/CartCard";
+import Warning from "components/Warning";
+import { useProduct } from "hooks/useProduct";
+import { RootState } from "redux/store";
 import "./Cart.scss";
 
 const Cart = () => {

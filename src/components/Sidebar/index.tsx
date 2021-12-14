@@ -14,9 +14,11 @@ import ListItemText from "@mui/material/ListItemText";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { Routes } from "src/configs/routes";
-import { User } from "src/domains/User";
-import { RootState } from "src/redux/store";
+
+import { Routes } from "configs/routes";
+import { User } from "domains/User";
+
+import { RootState } from "redux/store";
 
 interface SidebarProps {
   isOpen: boolean;

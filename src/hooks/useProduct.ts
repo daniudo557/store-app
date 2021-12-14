@@ -4,7 +4,7 @@ import {
   createProduct as createProductService,
   fetchProduct as fetchProductService,
   findProduct as findProductService,
-} from "src/services/productService";
+} from "services/productService";
 
 export const useProduct = () => {
   const queryClient = useQueryClient();

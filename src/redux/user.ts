@@ -1,5 +1,5 @@
 import { createSlice, SliceCaseReducers } from "@reduxjs/toolkit";
-import { User } from "src/domains/User";
+import { User } from "domains/User";
 
 const userSlice = createSlice<
   { user?: User },

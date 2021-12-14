@@ -1,7 +1,9 @@
 import { Grid } from "@mui/material";
-import ProductCard from "src/components/ProductCard";
-import ProductCardSkeleton from "src/components/ProductCard/ProductCardSkeleton";
-import { useProduct } from "src/hooks/useProduct";
+
+import ProductCard from "components/ProductCard";
+import ProductCardSkeleton from "components/ProductCard/ProductCardSkeleton";
+import { useProduct } from "hooks/useProduct";
+
 import "./Product.scss";
 
 const Product = () => {

@@ -1,8 +1,10 @@
 import { Card, Stack, Tab, Tabs } from "@mui/material";
 import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react";
-import LoginUserForm from "src/components/LoginUserForm";
-import RegisterUserForm from "src/components/RegisterUserForm";
-import { useAuth } from "src/hooks/useAuth";
+
+import LoginUserForm from "components/LoginUserForm";
+import RegisterUserForm from "components/RegisterUserForm";
+import { useAuth } from "hooks/useAuth";
+
 import "./Welcome.scss";
 
 const Welcome = () => {

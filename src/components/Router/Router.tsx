@@ -1,10 +1,12 @@
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Redirect, Route, Switch } from "react-router";
-import { Routes } from "src/configs/routes";
-import { User } from "src/domains/User";
-import { useRoute } from "src/hooks/useRoute";
-import { RootState } from "src/redux/store";
+
+import { Routes } from "configs/routes";
+import { User } from "domains/User";
+import { useRoute } from "hooks/useRoute";
+
+import { RootState } from "redux/store";
 
 const Router = () => {
   const { routes } = useRoute();
@@ -17,7 +19,7 @@ const Router = () => {
   return (
     <Switch>
       {routes.map((route) => {
-        const { Component, url, key, protectedRoute } = route;
+        const { Component, url, key } = route;
 
         const checkProtectedRoute = () => {
           if (!isUserLogged) {
@@ -29,7 +31,7 @@ const Router = () => {
 
         return (
           <Route key={key} path={url} exact>
-            {protectedRoute ? checkProtectedRoute : <Component />}
+            {false ? checkProtectedRoute : <Component />}
           </Route>
         );
       })}
