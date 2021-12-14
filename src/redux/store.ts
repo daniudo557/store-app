@@ -5,7 +5,7 @@ import userReducer from "./user";
 
 export interface RootState {
   cart: CartProduct[];
-  user: User;
+  user: { user?: User };
 }
 export type AppDispatch = typeof store.dispatch;
 

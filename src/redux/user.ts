@@ -1,19 +1,19 @@
 import { createSlice, SliceCaseReducers } from "@reduxjs/toolkit";
 import { User } from "src/domains/User";
 
-const userSlice = createSlice<User | {}, SliceCaseReducers<User | {}>>({
+const userSlice = createSlice<
+  { user?: User },
+  SliceCaseReducers<{ user?: User }>
+>({
   name: "user",
-  initialState: {},
+  initialState: { user: undefined },
   reducers: {
     saveUser: (state, action) => {
-      Object.assign(state, action.payload);
-    },
-    removeUser: (state) => {
-      Object.assign(state, undefined);
+      state.user = action.payload;
     },
   },
 });
 
-export const { saveUser, removeUser } = userSlice.actions;
+export const { saveUser } = userSlice.actions;
 
 export default userSlice.reducer;

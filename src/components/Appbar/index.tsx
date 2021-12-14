@@ -13,11 +13,12 @@ import {
 } from "@mui/material";
 import { useCallback, useMemo, useState } from "react";
 import { useQueryClient } from "react-query";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Routes } from "src/configs/routes";
-import { AppDispatch } from "src/redux/store";
-import { removeUser } from "src/redux/user";
+import { User } from "src/domains/User";
+import { AppDispatch, RootState } from "src/redux/store";
+import { saveUser } from "src/redux/user";
 import Sidebar from "../Sidebar";
 import "./Appbar.scss";
 
@@ -46,6 +47,10 @@ interface AppbarProps {
 }
 
 const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
+  const { user } = useSelector<RootState, { user?: User }>(
+    (state) => state?.user
+  );
+
   const history = useHistory();
   const queryClient = useQueryClient();
   const dispatch = useDispatch<AppDispatch>();
@@ -55,7 +60,7 @@ const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
-  const isUserLogged = useMemo(() => true, []);
+  const isUserLogged = useMemo(() => !!user, [user]);
 
   const handleMenu = useCallback((event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -69,8 +74,8 @@ const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
     localStorage.removeItem("token");
     queryClient.removeQueries();
 
+    dispatch(saveUser(undefined));
     handleClose();
-    dispatch(removeUser(undefined));
 
     history.push(Routes.ROOT);
   }, [dispatch, handleClose, history, queryClient]);
@@ -88,10 +93,14 @@ const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
       <HideOnScroll>
         <AppbarMUI>
           <Toolbar>
-            <IconButton onClick={handleToggleSidebar} color="inherit">
-              <MenuIcon />
-            </IconButton>
-            <Sidebar isOpen={isSidebarOpen} onClose={handleToggleSidebar} />
+            {isUserLogged && (
+              <>
+                <IconButton onClick={handleToggleSidebar} color="inherit">
+                  <MenuIcon />
+                </IconButton>
+                <Sidebar isOpen={isSidebarOpen} onClose={handleToggleSidebar} />
+              </>
+            )}
 
             <div
               style={{

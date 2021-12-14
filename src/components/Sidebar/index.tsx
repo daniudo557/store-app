@@ -26,10 +26,12 @@ interface SidebarProps {
 const Sidebar = (props: SidebarProps) => {
   const { pathname } = useLocation();
   const history = useHistory();
-  const { user } = useSelector<RootState, { user: User }>((state) => state);
+  const { user } = useSelector<RootState, { user?: User }>(
+    (state) => state?.user
+  );
   const { isOpen, onClose } = props;
 
-  const isSuperUser = useMemo(() => user.role === 1, [user]);
+  const isSuperUser = useMemo(() => user?.role === 1, [user]);
 
   const drawer = (
     <div>
