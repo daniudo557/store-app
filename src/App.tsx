@@ -23,10 +23,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Appbar
-        prefersDarkMode={prefersDarkMode}
-        setPrefersDarkMode={setPrefersDarkMode}
-      />
+      <Appbar setPrefersDarkMode={setPrefersDarkMode} />
       <Wrapper>
         <Router />
       </Wrapper>
