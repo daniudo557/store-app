@@ -1,11 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import cartReducer from './cart';
+import cartReducer, { CartProduct } from './cart';
 
 export interface RootState {
-  cart: {
-    id: number;
-    count: number;
-  }[];
+  cart: CartProduct[];
 }
 export type AppDispatch = typeof store.dispatch;
 

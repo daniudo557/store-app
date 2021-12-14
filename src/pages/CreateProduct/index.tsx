@@ -121,8 +121,8 @@ const CreateProduct = () => {
             name="simple-controlled"
             value={rating}
             precision={0.25}
-            onChange={(event: any, newValue: any) => {
-              setRating(newValue);
+            onChange={(_, newValue) => {
+              setRating(Number(newValue));
             }}
           />
         </div>

@@ -1,45 +1,57 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
 
-export const getProductOnList = (
-  productList: { id: number; count: number }[],
-  id: number
-) => productList.find((product) => product.id === id);
+export const getProductOnList = (productList: CartProduct[], id: number) =>
+  productList.find((product) => product.id === id);
 
-const cartSlice = createSlice({
-  name: "cart",
-  initialState: {
-    cart: [],
-  },
+export interface CartProduct {
+  id: number;
+  count: number;
+}
+
+const cartSlice = createSlice<CartProduct[], SliceCaseReducers<CartProduct[]>>({
+  name: 'cart',
+  initialState: [],
   reducers: {
-    increment: (state: any, action) => {
-      const productArray: { id: number; count: number }[] = state.cart;
-      const isProductOnList = !!getProductOnList(productArray, action.payload);
+    increment: (state, action) => {
+      const cartProduct = getProductOnList(state, action.payload);
+      const isProductOnList = !!cartProduct;
 
       if (!isProductOnList) {
         const newProduct = {
-          count: 1,
           id: action.payload as number,
+          count: 1,
         };
-
-        productArray.push(newProduct);
-
-        state.cart = [...productArray];
-
+        state.push(newProduct);
         return;
       }
 
-      state.cart = productArray.map((product) =>
-        product.id === action.payload
-          ? { ...product, count: product.count + 1 }
-          : product
+      const newState = state.map((p) =>
+        p.id === action.payload ? { ...p, count: p.count + 1 } : p
       );
+
+      state.splice(0, state.length, ...newState);
     },
-    decrement: (state: any, action) => {
-      state.cart = state.cart.map((product: any) => {
-        return product.id === action.payload
-          ? { ...product, count: product.count <= 0 ? 0 : product.count - 1 }
-          : product;
-      });
+    decrement: (state, action) => {
+      const cartProduct = getProductOnList(state, action.payload);
+      const isProductOnList = !!cartProduct;
+
+      if (!isProductOnList) {
+        return;
+      }
+      if (cartProduct.count === 1) {
+        const filteredList = state.filter(
+          (comic) => comic.id !== action.payload
+        );
+        state.splice(0, state.length, ...filteredList);
+        return;
+      }
+
+      const newState = state.map((comic) =>
+        comic.id === action.payload
+          ? { ...comic, count: comic.count - 1 }
+          : comic
+      );
+      state.splice(0, state.length, ...newState);
     },
   },
 });
