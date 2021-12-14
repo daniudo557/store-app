@@ -1,6 +1,5 @@
 import { Grid } from "@mui/material";
 import ProductCard from "src/components/ProductCard";
-import ProductCardSkeleton from "src/components/ProductCard/ProductCardSkeleton";
 import { useProduct } from "src/hooks/useProduct";
 import "./Product.scss";
 
@@ -13,7 +12,7 @@ const Product = () => {
         <>
           {Array.from(Array(20)).map((_, index) => (
             <Grid item xs={12} sm={4} md={4} key={index}>
-              <ProductCardSkeleton />
+              <ProductCard.Skeleton />
             </Grid>
           ))}
         </>

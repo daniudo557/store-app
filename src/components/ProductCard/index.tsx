@@ -8,24 +8,25 @@ import {
   Rating,
   Stack,
   Typography,
-} from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { Routes } from 'src/configs/routes';
-import { Product } from 'src/domains/Product';
-import { findProdInCartById } from 'src/helpers/cart';
-import { CartProduct, decrement, increment } from 'src/redux/cart';
-import { AppDispatch, RootState } from 'src/redux/store';
-import CategoryTag from '../CategoryTag';
-import './ProductCard.scss';
+} from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Routes } from "src/configs/routes";
+import { Product } from "src/domains/Product";
+import { findProdInCartById } from "src/helpers/cart";
+import { CartProduct, decrement, increment } from "src/redux/cart";
+import { AppDispatch, RootState } from "src/redux/store";
+import CategoryTag from "../CategoryTag";
+import "./ProductCard.scss";
+import ProductCardSkeleton from "./ProductCardSkeleton";
 
 interface ProductCardProps {
   product: Product;
-  type?: 'small' | 'large';
+  type?: "small" | "large";
 }
 
 const ProductCard = (props: ProductCardProps) => {
-  const { product, type = 'small' } = props;
+  const { product, type = "small" } = props;
   const { cart } = useSelector<RootState, { cart: CartProduct[] }>(
     (state) => state
   );
@@ -36,7 +37,7 @@ const ProductCard = (props: ProductCardProps) => {
 
   return (
     <Badge
-      sx={{ width: '100%' }}
+      sx={{ width: "100%" }}
       badgeContent={prodInCart?.count ?? 0}
       color="warning"
     >
@@ -53,12 +54,12 @@ const ProductCard = (props: ProductCardProps) => {
               sx={{ marginBottom: 1 }}
               direction="row"
               alignItems="flex-end"
-              className={type === 'small' ? 'title-container' : undefined}
+              className={type === "small" ? "title-container" : undefined}
             >
               <Typography
                 variant="h5"
                 component="div"
-                className={type === 'small' ? 'title' : undefined}
+                className={type === "small" ? "title" : undefined}
               >
                 {product.title}
               </Typography>
@@ -88,13 +89,13 @@ const ProductCard = (props: ProductCardProps) => {
               variant="body1"
               color="text.secondary"
               sx={{ marginTop: 2 }}
-              className={type === 'small' ? 'description' : undefined}
+              className={type === "small" ? "description" : undefined}
             >
               Description: {product.description}
             </Typography>
           </div>
 
-          {type === 'small' && (
+          {type === "small" && (
             <Button
               component={Link}
               to={`${Routes.PRODUCT}/${product.id}`}
@@ -131,5 +132,7 @@ const ProductCard = (props: ProductCardProps) => {
     </Badge>
   );
 };
+
+ProductCard.Skeleton = ProductCardSkeleton;
 
 export default ProductCard;

@@ -90,13 +90,7 @@ const RegisterUserForm = () => {
 
       registerUser(newUser);
     },
-    [
-      registerName,
-      registerEmail,
-      registerUsername,
-      registerPassword,
-      registerUser,
-    ]
+    [registerName, registerEmail, registerUsername, registerPassword]
   );
 
   return (
