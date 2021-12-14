@@ -65,8 +65,6 @@ const Appbar = ({ prefersDarkMode, setPrefersDarkMode }: AppbarProps) => {
   }, []);
 
   const handleLogout = useCallback(() => {
-    console.log('Logout!!');
-
     localStorage.removeItem('token');
     queryClient.removeQueries();
 
