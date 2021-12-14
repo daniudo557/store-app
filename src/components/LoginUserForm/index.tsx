@@ -10,9 +10,10 @@ import {
   TextField,
 } from "@mui/material";
 import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react";
-import { authenticateUser } from "src/services/authService";
+import { useAuth } from "src/hooks/useAuth";
 
 const LoginUserForm = () => {
+  const { authenticateUser } = useAuth();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const [userName, setUserName] = useState<string>("");
@@ -49,7 +50,7 @@ const LoginUserForm = () => {
 
       authenticateUser({ userName, password });
     },
-    [password, userName]
+    [authenticateUser, password, userName]
   );
 
   return (
