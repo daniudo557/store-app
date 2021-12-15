@@ -5,7 +5,6 @@ import { Redirect, Route, Switch } from "react-router";
 import { Routes } from "configs/routes";
 import { User } from "domains/User";
 import { useRoute } from "hooks/useRoute";
-
 import { RootState } from "redux/store";
 
 const Router = () => {
@@ -19,7 +18,7 @@ const Router = () => {
   return (
     <Switch>
       {routes.map((route) => {
-        const { Component, url, key } = route;
+        const { Component, url, key, protectedRoute } = route;
 
         const checkProtectedRoute = () => {
           if (!isUserLogged) {
@@ -31,7 +30,7 @@ const Router = () => {
 
         return (
           <Route key={key} path={url} exact>
-            {false ? checkProtectedRoute : <Component />}
+            {protectedRoute ? checkProtectedRoute : <Component />}
           </Route>
         );
       })}

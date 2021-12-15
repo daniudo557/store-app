@@ -19,6 +19,7 @@ import { decrement, increment } from "redux/cart";
 import { AppDispatch, RootState } from "redux/store";
 
 import "./CartCard.scss";
+import CartCardSkeleton from "./CartCardSkeleton";
 
 interface CartCardProps {
   product: Product;
@@ -91,5 +92,7 @@ const CartCard = ({ product }: CartCardProps) => {
     </Badge>
   );
 };
+
+CartCard.Skeleton = CartCardSkeleton;
 
 export default CartCard;

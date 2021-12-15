@@ -21,6 +21,7 @@ import { AppDispatch, RootState } from "redux/store";
 
 import CategoryTag from "../CategoryTag";
 import "./ProductCard.scss";
+import ProductCardSkeleton from "./ProductCardSkeleton";
 
 interface ProductCardProps {
   product: Product;
@@ -134,5 +135,7 @@ const ProductCard = (props: ProductCardProps) => {
     </Badge>
   );
 };
+
+ProductCard.Skeleton = ProductCardSkeleton;
 
 export default ProductCard;

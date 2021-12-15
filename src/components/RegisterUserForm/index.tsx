@@ -9,42 +9,89 @@ import {
   OutlinedInput,
   TextField,
 } from "@mui/material";
-import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react";
+import { registerUser } from "src/services/authService";
 
-interface RegisterUserProps {
-  handleRegister: (event: SyntheticEvent) => void;
-  registerName: string;
-  hasRegisterNameError: boolean;
-  handleChangeRegisterName: (event: ChangeEvent<HTMLInputElement>) => void;
-  registerEmail: string;
-  hasRegisterEmailError: boolean;
-  handleChangeRegisterEmail: (event: ChangeEvent<HTMLInputElement>) => void;
-  registerUsername: string;
-  hasRegisterUsernameError: boolean;
-  handleChangeRegisterUsername: (event: ChangeEvent<HTMLInputElement>) => void;
-  registerPassword: string;
-  hasRegisterPasswordError: boolean;
-  handleChangeRegisterPassword: (event: ChangeEvent<HTMLInputElement>) => void;
-}
-
-const RegisterUserForm = (props: RegisterUserProps) => {
-  const {
-    handleRegister,
-    registerName,
-    hasRegisterNameError,
-    handleChangeRegisterName,
-    registerEmail,
-    hasRegisterEmailError,
-    handleChangeRegisterEmail,
-    registerUsername,
-    hasRegisterUsernameError,
-    handleChangeRegisterUsername,
-    registerPassword,
-    hasRegisterPasswordError,
-    handleChangeRegisterPassword,
-  } = props;
-
+const RegisterUserForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [registerName, setRegisterName] = useState<string>("");
+  const [hasRegisterNameError, setHasRegisterNameError] =
+    useState<boolean>(false);
+
+  const [registerEmail, setRegisterEmail] = useState<string>("");
+  const [hasRegisterEmailError, setHasRegisterEmailError] =
+    useState<boolean>(false);
+
+  const [registerUsername, setRegisterUsername] = useState<string>("");
+  const [hasRegisterUsernameError, setHasRegisterUsernameError] =
+    useState<boolean>(false);
+
+  const [registerPassword, setRegisterPassword] = useState<string>("");
+  const [hasRegisterPasswordError, setHasRegisterPasswordError] =
+    useState<boolean>(false);
+
+  const handleChangeRegisterName = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const newRegisterName = event.target.value;
+
+      setRegisterName(newRegisterName);
+
+      setHasRegisterNameError(newRegisterName.length < 1);
+    },
+    []
+  );
+
+  const handleChangeRegisterEmail = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const newRegisterEmail = event.target.value;
+      const isValidEmail = /^[^@\s]+@[^@\s.]+.[^@.\s]+(.[a-z]+)?$/.test(
+        newRegisterEmail
+      );
+
+      setRegisterEmail(newRegisterEmail);
+
+      setHasRegisterEmailError(!isValidEmail);
+    },
+    []
+  );
+
+  const handleChangeRegisterUsername = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const newRegisterUsername = event.target.value;
+
+      setRegisterUsername(newRegisterUsername);
+
+      setHasRegisterUsernameError(newRegisterUsername.length < 3);
+    },
+    []
+  );
+
+  const handleChangeRegisterPassword = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const newRegisterPassword = event.target.value;
+
+      setRegisterPassword(newRegisterPassword);
+
+      setHasRegisterPasswordError(newRegisterPassword.length < 3);
+    },
+    []
+  );
+
+  const handleRegister = useCallback(
+    (event: SyntheticEvent) => {
+      const newUser = {
+        name: registerName,
+        email: registerEmail,
+        userName: registerUsername,
+        password: registerPassword,
+      };
+
+      event.preventDefault();
+
+      registerUser(newUser);
+    },
+    [registerName, registerEmail, registerUsername, registerPassword]
+  );
 
   return (
     <form

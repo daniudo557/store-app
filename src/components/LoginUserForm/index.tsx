@@ -9,30 +9,48 @@ import {
   OutlinedInput,
   TextField,
 } from "@mui/material";
-import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react";
+import { authenticateUser } from "src/services/authService";
 
-interface LoginFormProps {
-  userName: string;
-  hasUserNameError: boolean;
-  handleChangeUserName: (event: ChangeEvent<HTMLInputElement>) => void;
-  password: string;
-  hasPasswordError: boolean;
-  handleChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (event: SyntheticEvent) => void;
-}
-
-const LoginUserForm = (props: LoginFormProps) => {
-  const {
-    handleSubmit,
-    userName,
-    hasUserNameError,
-    handleChangeUserName,
-    password,
-    hasPasswordError,
-    handleChangePassword,
-  } = props;
-
+const LoginUserForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
+
+  const [userName, setUserName] = useState<string>("");
+  const [hasUserNameError, setHasUserNameError] = useState<boolean>(false);
+
+  const [password, setPassword] = useState<string>("");
+  const [hasPasswordError, setHasPasswordError] = useState<boolean>(false);
+
+  const handleChangeUserName = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const newUserName = event.target.value;
+
+      setUserName(newUserName);
+
+      setHasUserNameError(newUserName.length < 3);
+    },
+    []
+  );
+
+  const handleChangePassword = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const newPassword = event.target.value;
+
+      setPassword(newPassword);
+
+      setHasPasswordError(newPassword.length < 3);
+    },
+    []
+  );
+
+  const handleSubmit = useCallback(
+    (event: SyntheticEvent) => {
+      event.preventDefault();
+
+      authenticateUser({ userName, password });
+    },
+    [password, userName]
+  );
 
   return (
     <form
