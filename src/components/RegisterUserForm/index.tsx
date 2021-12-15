@@ -10,9 +10,11 @@ import {
   TextField,
 } from "@mui/material";
 import { ChangeEvent, SyntheticEvent, useCallback, useState } from "react";
-import { registerUser } from "src/services/authService";
+import { useAuth } from "src/hooks/useAuth";
 
 const RegisterUserForm = () => {
+  const { registerUser } = useAuth();
+
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [registerName, setRegisterName] = useState<string>("");
   const [hasRegisterNameError, setHasRegisterNameError] =
@@ -90,7 +92,13 @@ const RegisterUserForm = () => {
 
       registerUser(newUser);
     },
-    [registerName, registerEmail, registerUsername, registerPassword]
+    [
+      registerName,
+      registerEmail,
+      registerUsername,
+      registerPassword,
+      registerUser,
+    ]
   );
 
   return (
