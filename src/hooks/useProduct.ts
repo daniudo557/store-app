@@ -1,3 +1,4 @@
+import { useSnackbar } from "notistack";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useParams } from "react-router";
 import {
@@ -7,6 +8,7 @@ import {
 } from "services/productService";
 
 export const useProduct = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const queryClient = useQueryClient();
   const params: { id?: string } = useParams();
 
@@ -30,6 +32,15 @@ export const useProduct = () => {
     onSuccess: () => {
       queryClient.invalidateQueries("productList");
       queryClient.invalidateQueries("product");
+
+      enqueueSnackbar("Product created successfully", {
+        variant: "success",
+      });
+    },
+    onError: ({ response }) => {
+      enqueueSnackbar(`${response.data.error}`, {
+        variant: "error",
+      });
     },
   });
 
