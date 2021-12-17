@@ -11,8 +11,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { Category, Product } from "src/domains/Product";
-import { useProduct } from "src/hooks/useProduct";
+
+import { Category, Product } from "domains/Product";
+import { useProduct } from "hooks/useProduct";
+
 import "./CreateProduct.scss";
 
 const CreateProduct = () => {

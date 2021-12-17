@@ -1,12 +1,11 @@
 import { Chip } from "@mui/material";
-
 import WomanIcon from "@mui/icons-material/Woman";
 import ManIcon from "@mui/icons-material/Man";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import TvIcon from "@mui/icons-material/Tv";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 
-import { Category } from "src/domains/Product";
+import { Category } from "domains/Product";
 
 import "./CategoryTag.scss";
 

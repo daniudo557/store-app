@@ -1,13 +1,15 @@
 import { useMutation } from "react-query";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Routes } from "src/configs/routes";
-import { AppDispatch } from "src/redux/store";
-import { saveUser } from "src/redux/user";
+
+import { Routes } from "configs/routes";
 import {
   authenticateUser as authenticate,
   registerUser as register,
-} from "src/services/authService";
+} from "services/authService";
+
+import { AppDispatch } from "redux/store";
+import { saveUser } from "redux/user";
 
 export const useAuth = () => {
   const history = useHistory();

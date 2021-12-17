@@ -1,5 +1,5 @@
-import { Endpoints } from "src/configs/endpoints";
-import { User } from "src/domains/User";
+import { Endpoints } from "configs/endpoints";
+import { User } from "domains/User";
 import RequestService from "./requestService";
 
 export const authenticateUser = (

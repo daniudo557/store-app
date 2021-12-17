@@ -1,10 +1,10 @@
-import { Routes } from "src/configs/routes";
-import Cart from "src/pages/Cart";
-import CreateProduct from "src/pages/CreateProduct";
-import NotFound from "src/pages/NotFound";
-import Product from "src/pages/Product";
-import ProductDetail from "src/pages/ProductDetail";
-import Welcome from "src/pages/Welcome";
+import { Routes } from "configs/routes";
+import Cart from "pages/Cart";
+import CreateProduct from "pages/CreateProduct";
+import NotFound from "pages/NotFound";
+import Product from "pages/Product";
+import ProductDetail from "pages/ProductDetail";
+import Welcome from "pages/Welcome";
 
 interface Route {
   key: string;

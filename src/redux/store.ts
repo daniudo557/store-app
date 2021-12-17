@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { User } from "src/domains/User";
+
+import { User } from "domains/User";
 import cartReducer, { CartProduct } from "./cart";
 import userReducer from "./user";
 

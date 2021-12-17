@@ -16,10 +16,12 @@ import { useCallback, useMemo, useState } from "react";
 import { useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Routes } from "src/configs/routes";
-import { User } from "src/domains/User";
-import { AppDispatch, RootState } from "src/redux/store";
-import { saveUser } from "src/redux/user";
+
+import { Routes } from "configs/routes";
+import { User } from "domains/User";
+import { AppDispatch, RootState } from "redux/store";
+import { saveUser } from "redux/user";
+
 import Sidebar from "../Sidebar";
 import "./Appbar.scss";
 

@@ -10,11 +10,14 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Routes } from "src/configs/routes";
-import { Product } from "src/domains/Product";
-import { findProdInCartById } from "src/helpers/cart";
-import { decrement, increment } from "src/redux/cart";
-import { AppDispatch, RootState } from "src/redux/store";
+
+import { Routes } from "configs/routes";
+import { Product } from "domains/Product";
+import { findProdInCartById } from "helpers/cart";
+
+import { decrement, increment } from "redux/cart";
+import { AppDispatch, RootState } from "redux/store";
+
 import "./CartCard.scss";
 import CartCardSkeleton from "./CartCardSkeleton";
 

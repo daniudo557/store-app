@@ -1,7 +1,8 @@
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { Link } from "@mui/material";
 import { useHistory } from "react-router-dom";
-import Warning from "src/components/Warning";
+
+import Warning from "components/Warning";
 
 import "./NotFound.scss";
 

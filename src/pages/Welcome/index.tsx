@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Card, Stack, Tab, Tabs } from "@mui/material";
 
-import LoginUserForm from "src/components/LoginUserForm";
-import RegisterUserForm from "src/components/RegisterUserForm";
+import LoginUserForm from "components/LoginUserForm";
+import RegisterUserForm from "components/RegisterUserForm";
 
 import "./Welcome.scss";
 

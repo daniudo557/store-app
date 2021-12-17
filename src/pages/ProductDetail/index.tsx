@@ -2,10 +2,13 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { Typography } from "@mui/material";
 import { useHistory } from "react-router-dom";
-import ProductCard from "src/components/ProductCard";
-import ProductCardSkeleton from "src/components/ProductCard/ProductCardSkeleton";
-import Warning from "src/components/Warning";
-import { useProduct } from "src/hooks/useProduct";
+
+import ProductCard from "components/ProductCard";
+import ProductCardSkeleton from "components/ProductCard/ProductCardSkeleton";
+import Warning from "components/Warning";
+
+import { useProduct } from "hooks/useProduct";
+
 import "./ProductDetail.scss";
 
 const ProductDetail = () => {

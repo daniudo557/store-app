@@ -1,5 +1,5 @@
-import { Endpoints } from "src/configs/endpoints";
-import { Product } from "src/domains/Product";
+import { Endpoints } from "configs/endpoints";
+import { Product } from "domains/Product";
 import RequestService from "./requestService";
 
 export const fetchProduct = (): Promise<Product[]> => {
