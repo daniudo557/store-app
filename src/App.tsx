@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@emotion/react";
 import { createTheme, CssBaseline } from "@mui/material";
+import { SnackbarProvider } from "notistack";
 import { useMemo, useState } from "react";
 import Appbar from "./components/Appbar";
 import Footer from "./components/Footer";
@@ -23,11 +24,13 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Appbar setPrefersDarkMode={setPrefersDarkMode} />
-      <Wrapper>
-        <Router />
-      </Wrapper>
-      <Footer />
+      <SnackbarProvider maxSnack={3}>
+        <Appbar setPrefersDarkMode={setPrefersDarkMode} />
+        <Wrapper>
+          <Router />
+        </Wrapper>
+        <Footer />
+      </SnackbarProvider>
     </ThemeProvider>
   );
 };
