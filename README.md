@@ -12,18 +12,18 @@ Store app is an ecommerce app for studying purposes.
 ### Getting Started
 
 1. Clone the repo
-   ```sh
+   ```bash
    git clone https://github.com/daniudo557/store-app.git
    ```
 2. Install NPM packages
-   ```sh
+   ```bash
    yarn install
    ```
 3. Run project
-   ```sh
+   ```bash
    yarn start
    ```
-4. Check [server repo](https://github.com/daniudo557/store-server)
+_Note: To run server, check getting started section of [server repo](https://github.com/daniudo557/store-server#getting-started)_
 
 ## Acknowledgments
 
