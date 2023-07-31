@@ -58,13 +58,15 @@ const Appbar = ({ setPrefersDarkMode }: AppbarProps) => {
   const queryClient = useQueryClient();
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleClick = () => history.push(Routes.ROOT);
-
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const isUserLogged = useMemo(() => !!user, [user]);
   const prefersDarkMode = useMemo(() => theme.palette.mode === "dark", [theme]);
+
+  const handleClick = () => {
+    return isUserLogged === true ? history.push(Routes.PRODUCT): history.push(Routes.ROOT)
+  }
 
   const handleMenu = useCallback((event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
