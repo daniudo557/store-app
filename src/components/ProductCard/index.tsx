@@ -48,7 +48,7 @@ const ProductCard = (props: ProductCardProps) => {
         <CardMedia
           component="img"
           alt="product image"
-          height="200"
+          height="120"
           image={product.image}
         />
         <CardContent>
