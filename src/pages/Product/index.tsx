@@ -26,13 +26,14 @@ const Content = (props: ContentProps) => {
   }
 
   return (
-    <div>
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    <>
       {productList?.map((product) => (
         <Grid item xs={12} sm={4} md={4} key={product.id}>
           <ProductCard product={product} />
         </Grid>
       ))}
-    </div>
+    </>
   );
 };
 
