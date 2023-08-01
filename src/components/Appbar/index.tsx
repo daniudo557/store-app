@@ -22,7 +22,7 @@ import { User } from "domains/User";
 import { AppDispatch, RootState } from "redux/store";
 import { saveUser } from "redux/user";
 
-import Sidebar from "../Sidebar";
+import Sidebar from "components/Sidebar";
 import "./Appbar.scss";
 
 interface HideOnScrollProps {
@@ -51,7 +51,7 @@ interface AppbarProps {
 const Appbar = ({ setPrefersDarkMode }: AppbarProps) => {
   const theme = useTheme();
   const { user } = useSelector<RootState, { user?: User }>(
-    (state) => state?.user
+    (state) => state?.user,
   );
 
   const history = useHistory();

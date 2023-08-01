@@ -9,6 +9,7 @@ const userSlice = createSlice<
   initialState: { user: undefined },
   reducers: {
     saveUser: (state, action) => {
+      // eslint-disable-next-line no-param-reassign
       state.user = action.payload;
     },
   },

@@ -10,7 +10,7 @@ import { RootState } from "redux/store";
 const Router = () => {
   const { routes } = useRoute();
   const { user } = useSelector<RootState, { user?: User }>(
-    (state) => state?.user
+    (state) => state?.user,
   );
 
   const isUserLogged = useMemo(() => !!user, [user]);
