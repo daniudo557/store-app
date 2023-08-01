@@ -25,8 +25,7 @@ const CreateProduct = () => {
   const [price, setPrice] = useState<number>();
   const [rating, setRating] = useState<number>(0);
 
-  const productDataFilled =
-    title && description && category && price && rating ? true : false;
+  const productDataFilled = title && description && category && price && rating;
 
   const categories = Object.values(Category);
 
@@ -40,11 +39,11 @@ const CreateProduct = () => {
 
   const handleRegister = () => {
     const productData: Partial<Product> = {
-      title: title,
-      description: description,
+      title,
+      description,
       category: category as Category,
-      price: price,
-      rating: rating,
+      price,
+      rating,
     };
 
     createProduct(productData);

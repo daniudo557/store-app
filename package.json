@@ -24,7 +24,7 @@
     "helpers": "link:./src/helpers",
     "hooks": "link:./src/hooks",
     "lodash": "^4.17.21",
-    "notistack": "^2.0.3",
+    "notistack": "^3.0.1",
     "pages": "link:./src/pages",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -37,11 +37,17 @@
     "typescript": "^4.4.4",
     "web-vitals": "^1.0.1"
   },
+  "resolutions": {
+    "@types/react": "17.0.14",
+    "@types/react-dom": "17.0.14"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint . --ext=.jsx,.js,.tsx,.ts",
+    "lint:fix": "eslint --fix --ext=.jsx,.js,.tsx,.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -63,6 +69,14 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.3.2",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-prettier": "^8.9.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "^3.0.0",
     "sass": "^1.43.4"
   }
 }

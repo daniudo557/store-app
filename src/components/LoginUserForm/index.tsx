@@ -30,7 +30,7 @@ const LoginUserForm = () => {
 
       setHasUserNameError(newUserName.length < 3);
     },
-    []
+    [],
   );
 
   const handleChangePassword = useCallback(
@@ -41,7 +41,7 @@ const LoginUserForm = () => {
 
       setHasPasswordError(newPassword.length < 3);
     },
-    []
+    [],
   );
 
   const handleSubmit = useCallback(
@@ -50,7 +50,7 @@ const LoginUserForm = () => {
 
       authenticateUser({ userName, password });
     },
-    [authenticateUser, password, userName]
+    [authenticateUser, password, userName],
   );
 
   return (

@@ -29,7 +29,7 @@ const Sidebar = (props: SidebarProps) => {
   const { pathname } = useLocation();
   const history = useHistory();
   const { user } = useSelector<RootState, { user?: User }>(
-    (state) => state?.user
+    (state) => state?.user,
   );
   const { isOpen, onClose } = props;
 

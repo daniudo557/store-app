@@ -8,7 +8,6 @@ export interface RootState {
   cart: CartProduct[];
   user: { user?: User };
 }
-export type AppDispatch = typeof store.dispatch;
 
 const store = configureStore({
   reducer: {
@@ -16,5 +15,7 @@ const store = configureStore({
     user: userReducer,
   },
 });
+
+export type AppDispatch = typeof store.dispatch;
 
 export default store;

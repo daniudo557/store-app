@@ -40,21 +40,21 @@ const RegisterUserForm = () => {
 
       setHasRegisterNameError(newRegisterName.length < 1);
     },
-    []
+    [],
   );
 
   const handleChangeRegisterEmail = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const newRegisterEmail = event.target.value;
       const isValidEmail = /^[^@\s]+@[^@\s.]+.[^@.\s]+(.[a-z]+)?$/.test(
-        newRegisterEmail
+        newRegisterEmail,
       );
 
       setRegisterEmail(newRegisterEmail);
 
       setHasRegisterEmailError(!isValidEmail);
     },
-    []
+    [],
   );
 
   const handleChangeRegisterUsername = useCallback(
@@ -65,7 +65,7 @@ const RegisterUserForm = () => {
 
       setHasRegisterUsernameError(newRegisterUsername.length < 3);
     },
-    []
+    [],
   );
 
   const handleChangeRegisterPassword = useCallback(
@@ -76,7 +76,7 @@ const RegisterUserForm = () => {
 
       setHasRegisterPasswordError(newRegisterPassword.length < 3);
     },
-    []
+    [],
   );
 
   const handleRegister = useCallback(
@@ -98,7 +98,7 @@ const RegisterUserForm = () => {
       registerUsername,
       registerPassword,
       registerUser,
-    ]
+    ],
   );
 
   return (

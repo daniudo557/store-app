@@ -1,12 +1,12 @@
 import { createSlice, SliceCaseReducers } from "@reduxjs/toolkit";
 
-export const getProductOnList = (productList: CartProduct[], id: number) =>
-  productList.find((product) => product.id === id);
-
 export interface CartProduct {
   id: number;
   count: number;
 }
+
+export const getProductOnList = (productList: CartProduct[], id: number) =>
+  productList.find((product) => product.id === id);
 
 const cartSlice = createSlice<CartProduct[], SliceCaseReducers<CartProduct[]>>({
   name: "cart",
@@ -26,7 +26,7 @@ const cartSlice = createSlice<CartProduct[], SliceCaseReducers<CartProduct[]>>({
       }
 
       const newState = state.map((p) =>
-        p.id === action.payload ? { ...p, count: p.count + 1 } : p
+        p.id === action.payload ? { ...p, count: p.count + 1 } : p,
       );
 
       state.splice(0, state.length, ...newState);
@@ -39,7 +39,7 @@ const cartSlice = createSlice<CartProduct[], SliceCaseReducers<CartProduct[]>>({
 
       if (cartProduct.count === 1) {
         const filteredList = state.filter(
-          (comic) => comic.id !== action.payload
+          (comic) => comic.id !== action.payload,
         );
         state.splice(0, state.length, ...filteredList);
         return;
@@ -48,7 +48,7 @@ const cartSlice = createSlice<CartProduct[], SliceCaseReducers<CartProduct[]>>({
       const newState = state.map((comic) =>
         comic.id === action.payload
           ? { ...comic, count: comic.count - 1 }
-          : comic
+          : comic,
       );
       state.splice(0, state.length, ...newState);
     },

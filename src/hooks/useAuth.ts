@@ -52,7 +52,7 @@ export const useAuth = () => {
           variant: "error",
         });
       },
-    }
+    },
   );
 
   return {
